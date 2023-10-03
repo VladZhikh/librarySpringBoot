@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Список читателей</title>
+    <style>
+        a,input,p{font-size: 20px}
+    </style>
+</head>
+<body>
+    <h2>Список читателей:</h2>
+    <div th:each="person : ${people}">
+    <a th:href="@{/people/{id}/find(id=${person.getPerson_id()})}"
+       th:text="${person.getFullName() + ', ' + person.getBirthYear()+' - '+person.getPerson_id()}">user</a>
+    </div>
+    <p th:text="${people.size()}">count</p>
+    <br/>
+    <hr/>
+    <a href="/people/new">Create New Person</a>
+</body>
+</html>

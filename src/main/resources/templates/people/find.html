@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Список книг читателя</title>
+    <style>
+        a,input,p{font-size: 20px}
+    </style>
+</head>
+<body>
+<h2 th:text="'Список книг читателя'"></h2>
+<p th:text="${person.getFullName() + ', ' + person.getBirthYear()}"></p>
+<hr/>
+<p th:text="${book.size()!=0} ? 'Книги :' : 'Нет ни одной книги'">TRUE or FALSE</p>
+<div th:each="book : ${book}">
+  <a
+     th:href="@{/book/{id}(id=${book.getBookId()})}"
+     th:text="${book.getTitle() + ', ' + book.getAuthor()+', '+book.getBookYear()+
+     ' - '+book.getBookId()}" th:style="${book.isDelay()} ? 'color:red' : 'color:blue'">
+  </a><br><br>
+</div>
+<br/>
+<hr/>
+<a th:href="@{/people/{id}/edit(id=${person.getPerson_id()})}">Edit</a><br><br>
+<form th:method="DELETE" th:action="@{/people/{id}(id=${person.getPerson_id()})}">
+  <input type="submit" value="Delete"/>
+</form><br>
+<a href="/people" >Вернутся к списку читателей</a><br>
+<a href="/book" >Вернутся к списку книг</a>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <style type="text/css">
+    a {
+      font-size: 120%;
+      font-family: Verdana, Arial, Helvetica, sans-serif;
+      color: #121272;
+    }
+  </style>
+  <title>Список книг</title>
+</head>
+<body>
+<h2>Список всех книг</h2>
+<div th:each="book : ${book}">
+  <a
+     th:href="@{/book/{id}(id=${book.getBookId()})}"
+     th:text="${book.getTitle() + ', ' + book.getAuthor()+', '+book.getBookYear()+
+     ' - '+book.getBookId()}">book
+  </a><br><br>
+</div>
+<p th:text="${book.size()}">count</p>
+<br/>
+<hr/>
+<a href="/book/new" style="font-size: 20px">Добавить новую книгу</a><br><br>
+<a href="/book/search" style="font-size: 20px">Поиск книг по названию</a>
+
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Update Person</title>
+</head>
+<body>
+    <p th:text="${person.getFullName() + ', ' + person.getBirthYear()}"/>
+    <p th:text="${person.getPerson_id()}"/>
+    <hr/>
+    <br/>
+    <a th:href="@{/people/{id}/edit(id=${person.getPerson_id()})}">Edit</a>
+
+    <form th:method="DELETE" th:action="@{/people/{id}(id=${person.getPerson_id()})}">
+      <input type="submit" value="Delete"/>
+    </form>
+<br>
+    <div>
+        <p th:text="${book!=null} ? 'Книги :' : 'Нет ни одной книги'">TRUE or FALSE</p>
+    </div>
+    <br>
+    <span th:if="${book.getTitle() != null}" th:text="${book.getTitle()}" ></span>
+
+</body>
+</html>
